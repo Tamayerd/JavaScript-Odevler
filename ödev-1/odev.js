@@ -3,7 +3,7 @@
 
 let isim = "yaren"
 let yas = 23
-let aktif = True 
+let aktif = true 
 
 console.log("ad:",isim,"yaş:",yas,"aktif:",aktif)
 console.log("ad:",typeof(isim),"yaş:",typeof(yas),"aktif:",typeof(aktif))
