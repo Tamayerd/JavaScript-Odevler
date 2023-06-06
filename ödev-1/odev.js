@@ -46,5 +46,6 @@ y = y - 5
 console.log(x + y)
 
 let ad = prompt("Lütfen adınızı giriniz:")
-console.log(ad)
+const obje = { isim: ad}
+console.log(obje)
 
