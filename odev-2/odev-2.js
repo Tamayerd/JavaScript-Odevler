@@ -86,36 +86,35 @@ else{
 //soru 6 
 
 let cuzdan = 1
-const alınacakOlan = {urunAdi: "çorap" , fiyati: 100, ekle: "ekle"}
+const alınacakOlan = { urunAdi: "çorap", fiyati: 100 }
+
 const istek = prompt("Ne almak istersiniz: çorap")
 
-if(istek === alınacakOlan.urunAdi){
-    if(cuzdan >= 100){
-        cuzdan -= 100
-        alert("Çorap alındı kalan: "+ cuzdan)
-        console.log("Çorap alındı kalan: "+ cuzdan)
+if (istek === alınacakOlan.urunAdi) {
+  if (cuzdan >= alınacakOlan.fiyati) {
+    cuzdan -= alınacakOlan.fiyati
+    alert("Çorap alındı. Kalan: " + cuzdan)
+    console.log("Çorap alındı. Kalan: " + cuzdan)
+  } else {
+    alert("Çorap alacak paran yok.")
+    const eklemekIcin = prompt("Para eklemek için 'ekle' yaz")
+    if (eklemekIcin === "ekle") {
+      cuzdan += 100;
+      alert("100 eklendi. Yeni bakiye: " + cuzdan)
     }
-    else if(cuzdan < 100){
-        alert("Çorap alacak paran yok.")
-        prompt("Para eklemek içi ekle yaz")
-          if(alınacakOlan.ekle === "ekle"){
-          cuzdan += 100
-          alert("100 eklendi kalan: "+ cuzdan)
-          }
-         if(cuzdan >= 100){
-            const istek_1 = prompt("Ne almak istersiniz: çorap")
-            if(istek_1 === alınacakOlan.urunAdi){
-                if(cuzdan >= 100){
-                    cuzdan -= 100
-                    alert("Çorap alındı kalan: "+ cuzdan)
-                    console.log("Çorap alındı kalan: "+ cuzdan)
-                  }
-                }
-          }  
+    if (cuzdan >= alınacakOlan.fiyati) {
+      const istek_1 = prompt("Ne almak istersiniz: çorap")
+      if (istek_1 === alınacakOlan.urunAdi) {
+        cuzdan -= alınacakOlan.fiyati
+        alert("Çorap alındı. Kalan: " + cuzdan)
+        console.log("Çorap alındı. Kalan: " + cuzdan)
+      }
+    }
   }
-}else{
-      alert("ürün adı eşleşmiyor.")
+} else {
+  alert("Ürün adı eşleşmiyor.")
 }
+
 
 //soru 7 
 
