@@ -9,22 +9,6 @@ if (welcome !== user.username && welcome_ !== user.password){
   alert("giriş yaptınız.")
 }
 
-
-
-
-
-
-//soru 1
-
-const limit = 123
-let yas = parseInt(prompt("Yaş giriniz:"))
-
-if (yas === limit){
-    alert("hoşgeldiniz")
-}else{
-    alert("yaşınız yanlış!")
-}
-
 //soru 2
 
 const user = {
