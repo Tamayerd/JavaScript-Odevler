@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #flex{
+            display: flex;
+            flex-direction: column;
+        }
+        #flex img{
+            width: 100px;
+        }
+        #flex.active{
+            flex-direction: row;
+        }
+        
+    </style>
+ 
+</head>
+<body>
+    <div class="red">jsıfogjosfng</div> 
+
+    <button id = "black">Tıkla</button>
+    <button id = "onClick">Herhangi bir butonu</button>
+    <div id="list"></div>
+    <button id="isim">isim giriniz:</button>
+    <div id = "flex">
+    <img  src="image-1.jpg" style="width: 100px;height: auto;">
+    <img src="image-2.jpg"style="width: 100px;height: auto;">
+    <img  src ="image-3.jpg"style="width: 100px;height: auto">
+    </div>
+    <button  onclick="gorunum()" >resimleri sırala</button>
+
+    <button onclick="ekle()">not ekle</button>
+    <h5 id = "not"></h5>
+    <button id="sil">X</button>
+<script>
+//ödev-1
+let red = document.querySelector(".red");
+red.style.backgroundColor = "red";
+red.style.color = "white";
+red.style.height = "100px";
+red.style.width = "100px";
+
+//ödev-2
+let button = document.getElementById("black")
+let click = false;
+
+button.addEventListener("click",function(){
+    if(click){
+        button.style.backgroundColor = "black";
+        button.style.color = "white";
+        click = false;
+    }else{
+        button.style.backgroundColor = "white";
+        button.style.color = "black";
+        click = true;
+    }
+});
+//button.onclick = function(){
+//     button.style.backgroundColor = "black";
+//     button.style.color = "white";
+// };
+// function changeStyle(){
+//     button.style.backgroundColor = "black";
+//     button.style.color = "white";
+// };
+
+//ödev-3
+let users = [{name: "Okan",age: 13},{name: "Yaren",age: 24}];
+
+let onClick = document.getElementById("onClick");
+let ul = document.getElementById("list");
+let clickOn = false;
+
+onClick.addEventListener("click", function(){
+    if(clickOn){
+        ul.innerHTML = "";
+        clickOn = false;
+    }else{
+        let ulHTML = "";
+        users.forEach(function(user){
+        ulHTML += "<p>Name: " + user.name + "</p>";
+        ulHTML += "<p>Age: " + user.age + "</p>";
+        });
+        ul.innerHTML = ulHTML;
+        clickOn = true;
+    };
+});
+
+//ödev-4
+let buton = document.getElementById("isim");
+buton.addEventListener("click",function(){
+    let name = prompt("İsim girin:");
+    if(name){
+        let h1 = document.createElement("h1");
+        h1.textContent = name;
+        document.body.appendChild(h1);
+    }
+});
+
+//ödev-5
+function gorunum(){
+const div = document.getElementById("flex")
+div.classList.toggle('active') //toggle sınıf geeçişi yapar.
+}
+
+//ödev-6
+function ekle(){
+    const note = prompt("Not ekle:")
+    if(note){
+        const div = document.getElementById("not")
+        const randomId = Math.floor(Math.random() * 100)
+        const p = '<p id= "${randomId}"> ${note} <small onclick= "Notsil(${randomId})" style= "color:purple">X</small></p>'
+
+        div.innerHTML += p 
+
+    }
+}
+function Notsil(id){
+    const hedefEtiket = document.getElementById(targetId)
+    const onayla = confirm("Emin misin?")
+    hedefEtiket.remove()
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</script>    
+</body>
+</html>
