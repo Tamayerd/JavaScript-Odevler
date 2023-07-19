@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+
+    </style>
+</head>
+<body>
+    <div>
+        <h2>Kayıt Ol</h2>
+        <input id="kayit_ad" type="text" placeholder="adınız">
+        <input id="kayit_sifre" type="password" placeholder="şifre">
+        <button onclick="kayit()">Kayıt Ol</button>
+    </div>
+    <div>
+        <h2>Giriş Yap</h2>
+        <input id="giris_ad" type="text" placeholder="adınız">
+        <input id="giris_sifre"  type="password" placeholder="şifre">
+        <button onclick="giris()">Giriş Yap</button>
+    </div>
+    <script>
+        function SpecialCharacters(str){
+            const specialChars = /[!@#$%^&*()_+\-=[\]{};':"\\|,.<>/?]/;
+            return specialChars.test(str);
+        }
+    function kayit() {
+        const kayit_ad = document.getElementById('kayit_ad');
+        const kayit_sifre = document.getElementById('kayit_sifre');
+        
+        if (kayit_ad.value.length > 3 && kayit_sifre.value.length >3 && !SpecialCharacters(kayit_ad.value) && !SpecialCharacters(kayit_sifre.value)) {
+            const model = {
+                username: kayit_ad.value,
+                password: kayit_sifre.value
+            };
+
+            const modelJSON = JSON.stringify(model); 
+            localStorage.setItem(kayit_ad.value, modelJSON);
+            alert("Kayıt olundu.");
+        }else{
+            alert("3 karakterden uzun kullanıcı adı ya da şifre girilmeli. Ayrıca özel karakter kullanılmamalı.")
+        }
+    }
+
+    function giris(){
+        const giris_ad = document.getElementById('giris_ad');
+        const giris_sifre = document.getElementById('giris_sifre');
+        
+        if (giris_ad.value && giris_sifre.value) {
+            const user = localStorage.getItem(giris_ad.value);
+            
+            if (user) {
+                const parsedUser = JSON.parse(user);
+                
+                if (parsedUser.password === giris_sifre.value) {
+                    alert("Başarıyla giriş yapıldı");
+                } else {
+                    alert("Hatalı şifre");
+                }
+            } else {
+                alert("Kullanıcı bulunamadı");
+            }
+        }
+    }
+    </script>
+</body>
+</html>
+
+
+
