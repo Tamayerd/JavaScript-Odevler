@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body{
+            background-color:color-mix(in srgb, rgb(0, 255, 251) 40%, black 50%);
+        }
+    
+        .flex-item {
+            width: 25%;
+            padding: 10px;
+            display: flex;
+           
+           
+        }
+        .flex-item img{
+            width: 50%;
+            height: auto;
+            display: flex;
+            margin-left: 100px;
+        }
+        #info{
+            margin-left: 100px;
+            font-family: Arial, Helvetica, sans-serif;
+            flex-direction: row;
+
+        }
+        #location{
+        margin-left: 100px;            
+        }
+        #search-container{
+            margin-left: 100px;
+        }
+        #search-container input{
+            width: 90%;
+        }
+        #loader{
+            display: none;
+        }
+        #loader.active{
+            display: block;
+        }
+        
+    </style>
+</head>
+<body>
+    <div id="site-container">
+        <div id="search-container">
+        <input onchange="filter(this.value)" type="search" placeholder="kullanıcı ara"></div>
+    </div>
+    <p id="loader">Yükleniyor...</p>
+    <div id="flex-container"></div>
+    <div class = "up">
+    <button onclick="up()">Yukarı</button></div>
+    <script>
+    async function makeAPIrequest(){
+        var error = false;
+        const loader = document.getElementById('loader');
+        loader.classList.add('active');
+        const request = await fetch('https://randomuser.me/api?results=100').catch(function(err) {
+            console.log("hata var", err);
+            error = true;
+        });
+        if (error) return;
+        loader.classList.remove('active');
+        const data = await request.json();
+                console.log(data);
+        
+        const div = document.getElementById('flex-container');
+        data.results.map(function(user) {
+
+        const div = document.getElementById('flex-container');
+        div.innerHTML += '<div class="flex-item"><img src="' + user.picture.large + '" alt="' + user.name.first + '"><p id="info">' + user.name.first + '' +" "+ '' + user.name.last + '' +" "+''+ user.dob.age + '</p><p id="location"> '+ user.location.city + ''+" "+''+ user.location.country + ''+" "+''+ user.location.state + '</p></div>';
+       
+     });
+};
+
+        function filter(value) {
+            const flexContainer = document.getElementById('flex-container');
+            const items = flexContainer.getElementsByClassName('flex-item');
+
+            Array.from(items).forEach(function(item) {//yeni bir array dizisi oluşturmak için Array.from
+                const info = item.querySelector('#info').textContent.toLowerCase();
+                const location = item.querySelector('#location').textContent.toLowerCase();
+                
+                if (info.includes(value.toLowerCase()) || location.includes(value.toLowerCase())) {
+                    item.style.display = 'flex';
+                } else {
+                    item.style.display = 'none';
+                }
+            });
+        };
+
+      
+
+
+
+        function up(){
+            window.scrollTo({
+            top:0,
+            behavior: "smooth"
+        });
+
+        };
+
+
+
+
+
+
+    makeAPIrequest();
+    </script>
+</body>
+</html>
