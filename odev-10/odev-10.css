@@ -1,0 +1,18 @@
+body{
+    background-color: rgba(98, 54, 139, 0.681);
+    font-family: monospace;
+}
+h1{
+    margin-left: 5%;
+}
+.list-group-item{
+    background-color:rgba(116, 45, 169, 0.551) ;
+    color: black;
+    border-color: rgb(83, 18, 203);
+    width: 80%;
+    margin-left: 10%;
+}
+.form-check-label{
+    width: 900px;
+
+}
